@@ -21,10 +21,6 @@ function setup() {
   createCanvas(200, 200);
   sad = loadSound("audio/sad.mp3", onSoundLoadSuccess,onSoundLoadError,onSoundLoadProgress);
   happy = loadSound("audio/happy.mp3")
-  //happy.setVolume(0);
-
-  slider = createSlider(1, 255, 1, 1);
-  slider.style('width', '80%')
   
 }
 
@@ -37,8 +33,8 @@ function draw() {
     happy.loop()
     playcount++;
   }
-  sad.setVolume((255-val)*.01) // add a function that calls for values
-  happy.setVolume((Math.abs(val-1))*.01)
+  sad.setVolume((255-mixValue)*.01) // add a function that calls for values
+  happy.setVolume((Math.abs(mixValue-1))*.01)
   
   rect(30, 20, val, 20)
 
