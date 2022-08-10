@@ -1,3 +1,3 @@
 const mixVal = function(){
-    return 255;
+    return 1;
 }
