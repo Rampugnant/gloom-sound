@@ -2,8 +2,6 @@ var sad
 var happy
 var slider;
 var playcount = 0
-//var sadVol = 1;
-//var happyVol = 0;
 var mixValue = mixVal()
 
 function onSoundLoadSuccess(e){
@@ -25,8 +23,7 @@ function setup() {
 }
 
 function draw() {
-  console.log(mixValue)
-  let val = slider.value()
+  
   background(mixValue)
   if (mouseIsPressed && sad.isLoaded() && playcount === 0){
     sad.loop()
@@ -36,7 +33,7 @@ function draw() {
   sad.setVolume((255-mixValue)*.01) // add a function that calls for values
   happy.setVolume((Math.abs(mixValue-1))*.01)
   
-  rect(30, 20, val, 20)
+  rect(30, 20, mixValue, 20)
 
   //console.log(val)
   
