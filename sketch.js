@@ -23,7 +23,7 @@ function draw() {
   textSize(50)
     fill(255)
     text(Math.floor(mixValue/255*100) + " % ", 190, 30, 300,)
-  if (mouseIsPressed && sad.isLoaded() && playcount === 0){
+  if (mouseIsPressed && sad.isLoaded() && playcount === 0){  
     playMix();
   }
   sad.setVolume((255-mixValue)*.01) 
@@ -38,14 +38,15 @@ function draw() {
 }
 
 function playMix(){
+  userStartAudio()
+  getAudioContext().resume()
   sad.loop()
   happy.loop()
   playcount++;
 }
 
 function touchStarted() {
-  if (playcount === 0) {
-    getAudioContext().resume()
+  if (playcount === 0) {   
     playMix();
   }
 }
