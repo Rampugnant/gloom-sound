@@ -24,9 +24,7 @@ function draw() {
     fill(255)
     text(Math.floor(mixValue/255*100) + " % ", 190, 30, 300,)
   if (mouseIsPressed && sad.isLoaded() && playcount === 0){
-    sad.loop()
-    happy.loop()
-    playcount++;
+    playMix();
   }
   sad.setVolume((255-mixValue)*.01) 
   happy.setVolume((Math.abs(mixValue-1))*.01)
@@ -37,6 +35,16 @@ function draw() {
   fill(0, 0, 0, 0)
   rect(120, 100, 255, 30)
     
+}
 
-  
+function playMix(){
+  sad.loop()
+  happy.loop()
+  playcount++;
+}
+
+function touchStarted() {
+  if (playcount === 0) {
+    playMix();
+  }
 }
