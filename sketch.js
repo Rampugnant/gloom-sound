@@ -45,6 +45,7 @@ function playMix(){
 
 function touchStarted() {
   if (playcount === 0) {
+    getAudioContext().resume()
     playMix();
   }
 }
