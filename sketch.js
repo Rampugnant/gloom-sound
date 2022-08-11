@@ -1,40 +1,37 @@
 var sad
 var happy
-var slider;
-var playcount = 0
-var mixValue = mixVal()
 
-function onSoundLoadSuccess(e){
-  console.log("load sound success",e);
-}
-function onSoundLoadError(e){
-  console.log("load sound error",e);
-}
-function onSoundLoadProgress(e){
-  console.log("load sound progress",e);
-}
+var slider;
+
+var playcount = 0
+var mixValue; //= mixVal()
+
 
 
 function setup() {
-  createCanvas(200, 200);
-  sad = loadSound("audio/sad.mp3", onSoundLoadSuccess,onSoundLoadError,onSoundLoadProgress);
-  happy = loadSound("audio/happy.mp3")
-  
+  var cnv = createCanvas(500, 150);
+  cnv.parent("main")
+  sad = loadSound("audio/sad.mp3");
+  happy = loadSound("audio/happy.mp3");
+  slider = createSlider(1, 255, 1, 1)
+  slider.size(500)
 }
 
 function draw() {
-  
-  background(mixValue)
+  mixValue = slider.value()
+  background(72, 61, 139, 255 - mixValue)
+  textSize(50)
+    fill(255)
+    text(mixValue + ' / 255', 150, 50, 300,)
   if (mouseIsPressed && sad.isLoaded() && playcount === 0){
     sad.loop()
     happy.loop()
     playcount++;
-  }
-  sad.setVolume((255-mixValue)*.01) // add a function that calls for values
-  happy.setVolume((Math.abs(mixValue-1))*.01)
-  
-  rect(30, 20, mixValue, 20)
 
-  //console.log(val)
+    
+    
+  }
+  sad.setVolume((255-mixValue)*.01) 
+  happy.setVolume((Math.abs(mixValue-1))*.01)
   
 }
